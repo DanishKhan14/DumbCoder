@@ -64,5 +64,14 @@ def bfs(g,start):
     currentVert.setColor('black')
 
 
+def traverse(y):
+    x = y
+    while (x.getPred()):
+        print(x.getId())
+        x = x.getPred()
+    print(x.getId())
+
+traverse(g.getVertex('sage'))
+
 if __name__ == '__main__':
 	demo()
