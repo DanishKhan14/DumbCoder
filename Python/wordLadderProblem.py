@@ -1,6 +1,9 @@
 #!/usr/bin/python
 
 import graphModule
+import queueModule
+import stackModule
+
 
 def demo():
 	g = graphModule.Graph()
@@ -43,6 +46,22 @@ def buildGraph(wordFile):
                 if word1 != word2:
                     g.addEdge(word1,word2)
     return g
+
+
+def bfs(g,start):
+  start.setDistance(0)
+  start.setPred(None)
+  vertQueue = Queue()
+  vertQueue.enqueue(start)
+  while (vertQueue.size() > 0):
+    currentVert = vertQueue.dequeue()
+    for nbr in currentVert.getConnections():
+      if (nbr.getColor() == 'white'):
+        nbr.setColor('gray')
+        nbr.setDistance(currentVert.getDistance() + 1)
+        nbr.setPred(currentVert)
+        vertQueue.enqueue(nbr)
+    currentVert.setColor('black')
 
 
 if __name__ == '__main__':
