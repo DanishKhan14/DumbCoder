@@ -15,7 +15,6 @@ def buildParseTree(expression):
     currentNode = empTree
 
     for item in expList:
-        print item
         if item == '(':
             currentNode.insertLeft('')
             parentStack.push(currentNode)
@@ -37,17 +36,55 @@ def buildParseTree(expression):
 import operator
 
 def evaluate(parseTree):
-    opers = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.truediv}
+    opers = {'+':operator.add, '-':operator.sub, '*':operator.mul, '/':operator.truediv}
 
     leftC = parseTree.getLeftChild()
     rightC = parseTree.getRightChild()
 
     if leftC and rightC:
         fn = opers[parseTree.getRootValue()]
-        return fn(evaluate(leftC), evaluate(rightC))
+        return fn(evaluate(leftC),evaluate(rightC))
     else:
         return parseTree.getRootValue()
 
+def postOrderTraversal(parseTree):
+
+    if parseTree != None:
+        postOrderTraversal(parseTree.getLeftChild())
+        postOrderTraversal(parseTree.getRightChild())
+        print parseTree.getRootValue()
+
+def preOrderTraversal(parseTree):
+
+    if parseTree !=None:
+        print parseTree.getRootValue()
+        preOrderTraversal(parseTree.getLeftChild())
+        preOrderTraversal(parseTree.getRightChild())
+
+def inOrderTraversal(parseTree):
+
+    if  parseTree !=None:
+        inOrderTraversal(parseTree.getLeftChild())
+        print parseTree.getRootValue()
+        inOrderTraversal(parseTree.getRightChild())
+
+
+def iterInOrder(currentTree):
+    pStack = Stack()
+    print "\nPrinting in order traversal\n"
+    while currentTree != None or not pStack.isEmpty():
+        if currentTree !=None:
+            pStack.push(currentTree)
+            currentTree = currentTree.getLeftChild()
+        else:
+            currentTree = pStack.pop()
+            print currentTree.getRootValue()
+            currentTree = currentTree.getRightChild()
+
 
 pt = buildParseTree("( ( 10 + 5 ) * 3 )")
-print evaluate(pt)
+print "\nGiven Expression evaluates to %d\n" % evaluate(pt)
+preOrderTraversal(pt)
+postOrderTraversal(pt)
+inOrderTraversal(pt)
+iterInOrder(pt)
