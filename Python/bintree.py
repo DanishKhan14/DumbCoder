@@ -1,8 +1,11 @@
+#!/usr/bin/python
+
 """
 Python library for binary trees
 """
 
-class BinaryTree(object):
+class BinaryTree():
+
     def __init__(self, rootNode):
         self.key = rootNode
         self.leftChild = None
@@ -15,15 +18,15 @@ class BinaryTree(object):
         return self.key
 
     def insertLeft(self, newNode):
-        if self.leftChild == None:
+        if self.leftChild is None:
             self.leftChild = BinaryTree(newNode)
         else:
             t = BinaryTree(newNode)
-            t.rightChild = self.leftChild
+            t.leftChild = self.leftChild
             self.leftChild = t
 
     def insertRight(self, newNode):
-        if self.rightChild == None:
+        if self.rightChild is None:
             self.rightChild = BinaryTree(newNode)
         else:
             t = BinaryTree(newNode)
@@ -31,7 +34,7 @@ class BinaryTree(object):
             self.rightChild = t
 
     def getLeftChild(self):
-        return self.rightChild
+        return self.leftChild
 
     def getRightChild(self):
-        return self.leftChild
+        return self.rightChild
