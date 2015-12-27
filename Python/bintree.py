@@ -38,3 +38,60 @@ class BinaryTree():
 
     def getRightChild(self):
         return self.rightChild
+
+
+def inOrder(rootNode):
+    """
+    :param rootNode:
+    :return:
+    """
+
+def preOrder(rootNode):
+    """
+
+    :param rootNode:
+    :return:
+    """
+
+def postOrder(rootNode):
+    """
+
+    :param rootNode:
+    :return:
+    """
+
+def postOrderNorec(rootNode):
+    """
+
+    :param rootNode:
+    :return:
+    """
+
+def inOrderNorec(rootNode):
+    """
+
+    :param rootNode:
+    :return:
+    """
+
+def preOrderNorec(rootNode):
+    """
+
+    :param rootNode:
+    :return:
+    """
+
+def maxHeight(rootNode):
+    """
+
+    :param rootNode:
+    :return:
+    """
+
+def hasSum(rootNode, sum):
+    """
+
+    :param rootNode:
+    :param sum:
+    :return:
+    """
