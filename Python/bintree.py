@@ -4,6 +4,8 @@
 Python library for binary trees
 """
 
+import stackModule as s
+
 class BinaryTree():
 
     def __init__(self, rootNode):
@@ -40,18 +42,60 @@ class BinaryTree():
         return self.rightChild
 
 
-def inOrder(rootNode):
+def inOrderNorec(rootNode):
     """
     :param rootNode:
     :return:
     """
+    currenNode = rootNode
+    while currenNode is not None or not s.isEmpty():
+        if currenNode is not None:
+            s.push(currenNode)
+            currenNode = currenNode.getLeftChild()
+        else:
+            currenNode = s.pop()
+            print currenNode.getRootValue()
+            currenNode = currenNode.getRightChild()
 
-def preOrder(rootNode):
+
+def preOrderNorec(rootNode):
     """
 
     :param rootNode:
     :return:
     """
+    currentNode = rootNode
+    while currentNode is not None or not s.isEmpty():
+        if currentNode is not None:
+            s.push(currentNode)
+            print currentNode.getRootValue()
+            currentNode = currentNode.getLeftChild()
+        else:
+            s.push(currentNode)
+            currentNode = currentNode.getRightChild()
+
+
+def postOrderNorec(rootNode):
+    """
+
+    :param rootNode:
+    :return:
+    """
+    visited = BinaryTree(None)
+    currentNode = rootNode
+    while currentNode is not None or not s.isEmpty:
+        if currentNode is not None:
+            s.push(currentNode)
+            currentNode = currentNode.getLeftChild()
+        else:
+            currentNode = s.pop()
+            if currentNode.getRightChild is None or currentNode.getRightChild == visited:
+                print currentNode.getRootValue
+                visited = currentNode
+            if not currentNode == visited:
+                s.push(currentNode)
+            currentNode = currentNode.getRightChild()
+
 
 def postOrder(rootNode):
     """
@@ -60,21 +104,14 @@ def postOrder(rootNode):
     :return:
     """
 
-def postOrderNorec(rootNode):
+def inOrder(rootNode):
     """
 
     :param rootNode:
     :return:
     """
 
-def inOrderNorec(rootNode):
-    """
-
-    :param rootNode:
-    :return:
-    """
-
-def preOrderNorec(rootNode):
+def preOrder(rootNode):
     """
 
     :param rootNode:
