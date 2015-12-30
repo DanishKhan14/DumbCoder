@@ -103,6 +103,13 @@ def postOrder(rootNode):
     :param rootNode:
     :return:
     """
+    currentNode = rootNode
+    if currentNode.getLeftChild() is not None:
+        postOrder(currentNode.getLeftChild)
+    elif currentNode.getRightChild() is not None:
+        postOrder(currentNode.getRightChild)
+    else:
+        print currentNode.getRootValue
 
 def inOrder(rootNode):
     """
@@ -110,6 +117,11 @@ def inOrder(rootNode):
     :param rootNode:
     :return:
     """
+    currentNode = rootNode
+    if currentNode:
+        inOrder(currentNode.getLeftChild)
+        print currentNode.getRootValue
+        inOrder(currentNode.getRightChild)
 
 def preOrder(rootNode):
     """
@@ -117,6 +129,9 @@ def preOrder(rootNode):
     :param rootNode:
     :return:
     """
+    currentNode = rootNode
+
+
 
 def maxHeight(rootNode):
     """
