@@ -69,6 +69,19 @@ class ULinkedList():
 
         return found
 
+    def reverseList(self):
+        """
+        :return: Node
+        """
+        current = self.head
+        new_head = None
+        while current:
+            temp = current.getNext()
+            current.setNext = new_head
+            new_head = current
+            current = temp
+        return new_head
+
 
 class OLinkedList():
     '''
