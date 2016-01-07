@@ -83,6 +83,32 @@ class ULinkedList():
         return new_head
 
 
+    def reverseBetween(self, head, m, n):
+        if m >= n:
+            return head
+        #Step 1#
+        ohead = dummy = Node(0)
+        whead = wtail = head
+        dummy.next = head
+        for i in range(n-m):
+            wtail = wtail.next
+        #Step 2#
+        for i in range(m-1):
+            ohead, whead, wtail = whead, whead.next, wtail.next
+        #Step 3#
+        otail, wtail.next = wtail.next, None
+        revhead, revtail = self.reverse(whead)
+        #Step 4#
+        ohead.next, revtail.next = revhead, otail
+        return dummy.next
+
+    def reverse(self, head):
+        pre, cur, tail = None, head, head
+        while cur:
+            cur.next, pre, cur = pre, cur, cur.next
+        return pre, tail
+
+
 class OLinkedList():
     '''
     this is ordered linked list. here elements are ordered based on
