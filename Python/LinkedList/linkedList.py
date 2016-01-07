@@ -108,6 +108,42 @@ class ULinkedList():
             cur.next, pre, cur = pre, cur, cur.next
         return pre, tail
 
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        dummy = t1 = t2 = Node(0)
+        dummy.next = t1.next = t2.next = head
+        for i in range(n):
+            t1 = t1.next
+
+        while(t1.next != None):
+            t1 = t1.next
+            t2 = t2.next
+
+        t2.next = t2.next.next
+
+        return dummy.next
+
+    def removeElements(self, head, val):
+        """
+        :type head: ListNode
+        :type val: int
+        :rtype: ListNode
+        """
+        dummy = pre = Node(0)
+        dummy.next = head
+        while (head !=None):
+            if head.val == val:
+                pre.next = head.next
+                head = head.next
+            else:
+                pre = head
+                head = head.next
+        return dummy.next
+
 
 class OLinkedList():
     '''
