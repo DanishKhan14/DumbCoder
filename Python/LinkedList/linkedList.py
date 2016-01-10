@@ -144,6 +144,64 @@ class ULinkedList():
                 head = head.next
         return dummy.next
 
+    def removeElements2(self, head, val):
+        """
+        :type head: ListNode
+        :type val: int
+        :rtype: ListNode
+        """
+        while head and head.val == val:
+            head = head.next
+
+        if not head:
+            return head
+        temp = head
+        while(temp.next):
+            if temp.next.val == val:
+                temp.next = temp.next.next
+            else:
+                temp = temp.next
+        return head
+
+    def reorderList(self, head):
+        """
+        :type head: ListNode
+        :rtype: void Do not return anything, modify head in-place instead.
+        """
+        if head is None or head.next is None or head.next.next is None:
+            return
+
+        dummy = ListNode(0)
+        dummy.next = fast = slow = head
+        while (fast != None and fast.next !=None):
+            fast = fast.next.next
+            slow = slow.next
+        revhead = self.reverseO(slow.next)
+        slow.next = None
+        #cross merge
+        while (head and revhead):
+            t1 = head.next
+            t2 = revhead.next
+            head.next = revhead
+            revhead.next = t1
+            head = t1
+            revhead = t2
+        return
+
+
+    def reverseO(self, head):
+        if head is None or head.next is None:
+            return head
+
+        pre = None
+        cur = head
+        while(cur):
+            temp = cur.next
+            cur.next = pre
+            pre = cur
+            cur = temp
+        return pre
+
 
 class OLinkedList():
     '''
