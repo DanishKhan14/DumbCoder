@@ -202,6 +202,22 @@ class ULinkedList():
             cur = temp
         return pre
 
+    #swap nodes in pairs
+    def swapPairs(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if not head or not head.next:
+            return head
+        first,second = head, head.next
+        third = second.next
+        head = second
+        second.next = first
+        first.next = self.swapPairs(third)
+
+        return head
+
 
 class OLinkedList():
     '''
