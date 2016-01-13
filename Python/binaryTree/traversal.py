@@ -142,3 +142,10 @@ InOrder Traversal no recursion
             return -1
         else:
             return max(leftHeight, rightHeight) + 1
+
+    def maxDepth(self, root):
+        if root is None:
+            return 0
+        hleft = 1 + self.maxDepth(root.left)
+        hright = 1 + self.maxDepth(root.right)
+        return max(hleft, hright)
