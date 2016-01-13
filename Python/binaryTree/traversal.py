@@ -143,9 +143,29 @@ InOrder Traversal no recursion
         else:
             return max(leftHeight, rightHeight) + 1
 
-    def maxDepth(self, root):
+    def maxDepth(self, root): #Recursion
         if root is None:
             return 0
-        hleft = 1 + self.maxDepth(root.left)
-        hright = 1 + self.maxDepth(root.right)
-        return max(hleft, hright)
+        return max(self.maxDepth(root.left), self.mexDepth(root.right)) +1
+
+    def maxDepthIter(self, root): #Iteration
+        if root == None:
+            return 0
+        nodeStack = [root];
+        depthStack = [1];
+        maxDepth = 0;
+        while len(nodeStack)>0:
+            node = nodeStack.pop();
+            depth = depthStack.pop();
+            maxDepth = maxDepth if maxDepth > depth else depth
+            if node.left != None:
+                nodeStack.append(node.left)
+                depthStack.append(depth+1)
+            if node.right != None:
+                nodeStack.append(node.right)
+                depthStack.append(depth+1)
+        return maxDepth
+
+    def minDepth(self, root):
+        if root is None:
+            return 0
