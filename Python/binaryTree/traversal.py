@@ -97,3 +97,27 @@ InOrder Traversal no recursion
                 stack.append(tmp.left)
                 stack.append(tmp.right)
         return ans[::-1]
+
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if root is None or (root.left is None and root.right is None):
+            return True
+        isBST = True
+        cur = root
+        self.val = None
+        import Queue
+        q = Queue.LifoQueue()
+        while(cur or not q.empty()):
+            if cur:
+                q.put(cur)
+                cur = cur.left
+            else:
+                cur = q.get()
+                if self.val >= cur.val:
+                    isBST = False
+                self.val = cur.val
+                cur = cur.right
+        return isBST
