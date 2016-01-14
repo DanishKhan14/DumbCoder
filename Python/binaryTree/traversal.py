@@ -195,3 +195,19 @@ InOrder Traversal no recursion
             return False
         else:
             return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if root is None:
+            return True
+        return self.isMirror(root.left, root.right)
+
+    def isMirror(self, p, q):
+        if p is None and q is None:
+            return True
+        if p is None or q is None:
+            return False
+        return self.isMirror(p.left, q.right) and self.isMirror(p.right, q.left)
