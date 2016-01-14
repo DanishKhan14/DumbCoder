@@ -210,4 +210,17 @@ InOrder Traversal no recursion
             return True
         if p is None or q is None:
             return False
+        if p.val != q.val:
+            return False
         return self.isMirror(p.left, q.right) and self.isMirror(p.right, q.left)
+
+    def mirrorify(self, root):
+        if root is None:
+            return None
+        cur = root
+        self.mirrorify(cur.left)
+        self.mirrorify(cur.right)
+        temp = cur.left
+        cur.left = cur.right
+        cur.right = temp
+        return root
