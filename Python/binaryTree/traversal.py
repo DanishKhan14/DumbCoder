@@ -166,6 +166,32 @@ InOrder Traversal no recursion
                 depthStack.append(depth+1)
         return maxDepth
 
-    def minDepth(self, root):
+    def minDepth(self, root):  # Recursive
         if root is None:
             return 0
+        if root.left is None and root.right is None:
+            return 1
+        if root.left is None:
+            return 1 + self.minDepth(root.right)
+        if root.right is None:
+            return 1 + self.minDepth(root.left)
+        return min(self.minDepth(root.left), self.minDepth(root.right)) + 1
+
+    def minDepth(self, root):
+
+
+
+    def isSameTree(self, p, q):
+        """
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: bool
+        """
+        if not p and not q:
+            return True
+        elif not p or not q:
+            return False
+        elif p.val!=q.val:
+            return False
+        else:
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
