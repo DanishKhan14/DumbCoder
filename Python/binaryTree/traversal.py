@@ -224,3 +224,35 @@ InOrder Traversal no recursion
         cur.left = cur.right
         cur.right = temp
         return root
+
+    def hasPathSum(self, root, sum):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: bool
+        """
+        ## Recursive Solution ##
+        """
+        if root is None:
+            return False
+        if root.left is None and root.right is None and root.val == sum:
+            return True
+        else:
+            return self.hasPathSum(root.left, sum-root.val) or self.hasPathSum(root.right, sum-root.val)
+        """
+        ### Iterative Solution : DFS ###
+        if root is None:
+            return False
+        rsum, node = [0], [root]
+        while len(node) > 0:
+            n = node.pop()
+            s = rsum.pop() + n.val
+            if n.left is None and n.right is None and s == sum:
+                return True
+            if n.left is not None:
+                node.append(n.left)
+                rsum.append(s)
+            if n.right is not None:
+                node.append(n.right)
+                rsum.append(s)
+        return False
