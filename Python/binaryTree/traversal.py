@@ -381,3 +381,38 @@ InOrder Traversal no recursion
         if root.right:
             self.dfs(root.right, ls+str(root.val)+"->", res)
 
+    def sumNumbers(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        """
+        if root is None:
+            return 0
+        res, total = [], 0
+        self.dfs(root, "", res)
+        for item in res:
+            total += int(item)
+        return total
+
+    def dfs(self, root, path, res):
+        if not root.left and not root.right:
+            res.append(path+str(root.val))
+        if root.left:
+            self.dfs(root.left, path+str(root.val), res)
+        if root.right:
+            self.dfs(root.right, path+str(root.val), res)
+        """
+        if root is None:
+            return 0
+        self.res= 0
+        self.dfs(root, 0)
+        return self.res
+
+    def dfs(self, root, sum):
+        if not root.left and not root.right:
+            self.res += sum*10 + root.val
+        if root.left:
+            self.dfs(root.left, sum*10+root.val)
+        if root.right:
+            self.dfs(root.right, sum*10+root.val)
