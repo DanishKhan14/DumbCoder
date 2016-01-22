@@ -168,6 +168,9 @@ InOrder Traversal no recursion
 
     def minDepth(self, root):  # Recursive
         """
+        [1] has minDepth as 1
+        [1,#,2] has minDepth as 2 and not 1
+        [1,2,#] again has minDepth as 2
 
         :param self:
         :param root:
@@ -185,7 +188,9 @@ InOrder Traversal no recursion
 
     def minDepth(self, root): #Iterative
         """
-        Use Level Order Traversal or BFS
+        Use Level Order Traversal or BFS. When hit with leaf first,
+        return depth
+
         :param self:
         :param root:
         :return:
@@ -234,6 +239,31 @@ InOrder Traversal no recursion
         if p.val != q.val:
             return False
         return self.isMirror(p.left, q.right) and self.isMirror(p.right, q.left)
+
+    # Method 2: Iterative
+
+    def isSymmetric_BFS(self, root):
+        """
+
+        :param self:
+        :param root:
+        :return:
+        """
+        if root is None:
+            return True
+
+        q = [(root.left, root.right)]
+        while q:
+            n1, n2 = q.pop(0)
+            if not n1 and not n2:
+                continue
+            if not n1 or not n2:
+                return False
+            if n1.val != n2.val:
+                return False
+            q.append((n1.left, n2.right))
+            q.append((n1.right, n2.left))
+        return True
 
     def mirrorify(self, root):
         if root is None:
