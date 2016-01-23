@@ -58,3 +58,19 @@ def rotate(nums, k):
             else:
                 map[n] = 1
         return False
+
+    def containsNearbyDuplicate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        d = {}
+        t = 0
+        for i in xrange(len(nums)):
+            t = nums[i]
+            if not t in d or i-d[t] > k:
+                d[t] = i
+            else:
+                return True
+        return False
