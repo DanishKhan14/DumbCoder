@@ -484,3 +484,29 @@ InOrder Traversal no recursion
                     stack.append((curr.right, False))
                     stack.append((curr, True))
                     stack.append((curr.left, False))
+
+
+    # Recursively
+    def kthSmallest1(self, root, k):
+        res = []
+        self.inorder(root, res)
+        return res[k-1]
+
+    def inorder(self, root, res):
+        if root:
+            self.inorder(root.left, res)
+            res.append(root.val)
+            self.inorder(root.right, res)
+
+    # Iteratively
+    def kthSmallest(self, root, k):
+        res, stack = [], []
+        while True:
+            while root:
+                stack.append(root)
+                root = root.left
+            if not stack:
+                return res[k-1]
+            node = stack.pop()
+            res.append(node.val)
+            root = node.right
