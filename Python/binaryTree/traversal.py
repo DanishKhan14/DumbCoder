@@ -460,10 +460,27 @@ InOrder Traversal no recursion
         self.dfs(root, 0)
         return self.res
 
-    def dfs(self, root, sum):
+    def kthSmallest(self, root, sum):
         if not root.left and not root.right:
             self.res += sum*10 + root.val
         if root.left:
             self.dfs(root.left, sum*10+root.val)
         if root.right:
             self.dfs(root.right, sum*10+root.val)
+
+        stack = [(root, False)]
+        while stack:
+            curr, visited = stack.pop()
+            if curr:
+                if visited:
+                    # if visited is True, it means a "small" node is found
+                    k -= 1
+                    # if k == 0, it means k small nodes has been checked,
+                    # the current node is the kth one
+                    if k == 0:
+                        return curr.val
+                else:
+                    # Add from right to left
+                    stack.append((curr.right, False))
+                    stack.append((curr, True))
+                    stack.append((curr.left, False))
