@@ -45,3 +45,16 @@ def rotate(nums, k):
                 else: # break early
                     return res
         return res
+
+    def containsDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        map = {}
+        for n in nums:
+            if n in map:
+                return True
+            else:
+                map[n] = 1
+        return False
