@@ -102,6 +102,20 @@ InOrder Traversal no recursion
                 stack.append(tmp.right)
         return ans[::-1]
 
+        # Another Method: Same as Pelar
+
+        p = root
+        l, stack = [], []
+        while p or len(stack)>0:
+            if p:
+                stack.append(p)
+                l.insert(0,p.val)
+                p = p.right
+            else:
+                node = stack.pop()
+                p = node.left
+        return l
+
 ###########################################################
 
     def isValidBST(self, root):
