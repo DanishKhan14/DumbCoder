@@ -602,6 +602,11 @@ InOrder Traversal no recursion
 
     def lowestCommonAncestor(self, root, p, q):
         """
+        To find the lowest common ancestor, we need to find where is p and q
+        and a way to track their ancestors. A parent pointer for each node
+        found is good for the job. After we found both p and q, we create
+        a set of p's ancestors. Then we travel through q's ancestors, the first one
+        appears in p's is our answer.
 
         :param self:
         :param root:
@@ -628,3 +633,4 @@ InOrder Traversal no recursion
         return q
 
 ############################################################
+
