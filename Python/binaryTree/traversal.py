@@ -29,6 +29,8 @@ InOrder Traversal no recursion
                 cur=cur.right
         return l
 
+###########################################################
+
     def preorderTraversal(self, root):
         """
         :type root: TreeNode
@@ -52,6 +54,8 @@ InOrder Traversal no recursion
                 cur = q.get()
                 cur = cur.right
         return l
+
+###########################################################
 
     def postorderTraversal(self, root):
         """
@@ -98,6 +102,8 @@ InOrder Traversal no recursion
                 stack.append(tmp.right)
         return ans[::-1]
 
+###########################################################
+
     def isValidBST(self, root):
         """
         :type root: TreeNode
@@ -122,6 +128,8 @@ InOrder Traversal no recursion
                 cur = cur.right
         return isBST
 
+###########################################################
+
     def isBalanced(self, root):
         if self.checkHeight(root) == -1:
             return False
@@ -142,6 +150,8 @@ InOrder Traversal no recursion
             return -1
         else:
             return max(leftHeight, rightHeight) + 1
+
+###########################################################
 
     def maxDepth(self, root): #Recursion
         if root is None:
@@ -165,6 +175,8 @@ InOrder Traversal no recursion
                 nodeStack.append(node.right)
                 depthStack.append(depth+1)
         return maxDepth
+
+###########################################################
 
     def minDepth(self, root):  # Recursive
         """
@@ -206,6 +218,8 @@ InOrder Traversal no recursion
             level = temp
         return depth
 
+###########################################################
+
 
     def isSameTree(self, p, q):
         """
@@ -221,6 +235,8 @@ InOrder Traversal no recursion
             return False
         else:
             return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+
+###########################################################
 
     def isSymmetric(self, root):
         """
@@ -275,6 +291,7 @@ InOrder Traversal no recursion
         cur.left = cur.right
         cur.right = temp
         return root
+###########################################################
 
     def hasPathSum(self, root, sum):
         """
@@ -308,14 +325,14 @@ InOrder Traversal no recursion
                 rsum.append(s)
         return False
 
+###########################################################
+
     def pathSum(self, root, sum):
         if not root:
             return []
         res = []
         self.dfs(root, sum, [], res)
         return res
-
-    ##### Path Sum ######
 
     def dfs(self, root, sum, ls, res):
         if not root.left and not root.right and sum == root.val:
@@ -384,6 +401,8 @@ InOrder Traversal no recursion
 
     ##### Path Sum Ends ####
 
+###########################################################
+
     ##### Path Traversals ######
 
     # dfs + stack
@@ -432,33 +451,38 @@ InOrder Traversal no recursion
         if root.right:
             self.dfs(root.right, ls+str(root.val)+"->", res)
 
+###########################################################
+
     def sumNumbers(self, root):
         """
+
+        Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
+
+        An example is the root-to-leaf path 1->2->3 which represents the number 123.
+
+        Find the total sum of all root-to-leaf numbers.
+
         :type root: TreeNode
         :rtype: int
         """
-        """
-        if root is None:
-            return 0
-        res, total = [], 0
-        self.dfs(root, "", res)
-        for item in res:
-            total += int(item)
-        return total
+        # Recursive
 
-    def dfs(self, root, path, res):
-        if not root.left and not root.right:
-            res.append(path+str(root.val))
-        if root.left:
-            self.dfs(root.left, path+str(root.val), res)
-        if root.right:
-            self.dfs(root.right, path+str(root.val), res)
-        """
         if root is None:
             return 0
         self.res= 0
         self.dfs(root, 0)
         return self.res
+
+    def dfs(self, root, sum):
+        if not root.left and not root.right:
+            self.res += sum*10 + root.val
+        if root.left:
+            self.dfs(root.left, sum*10+root.val)
+        if root.right:
+            self.dfs(root.right, sum*10+root.val)
+
+###########################################################
+
 
     def kthSmallest(self, root, sum):
         if not root.left and not root.right:
@@ -510,3 +534,6 @@ InOrder Traversal no recursion
             node = stack.pop()
             res.append(node.val)
             root = node.right
+
+
+###########################################################
