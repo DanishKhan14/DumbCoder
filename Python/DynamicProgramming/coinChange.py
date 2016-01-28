@@ -3,36 +3,43 @@
 Coin Change Problem
 """
 
-def dpMakeChange(coinValueList,change,minCoins,coinsUsed):
-   for cents in range(change+1):
-      coinCount = cents
-      newCoin = 1
-      for j in [c for c in coinValueList if c <= cents]:
-            if minCoins[cents-j] + 1 < coinCount:
-               coinCount = minCoins[cents-j]+1
-               newCoin = j
-      minCoins[cents] = coinCount
-      coinsUsed[cents] = newCoin
-   return minCoins[change]
+    def coinChange(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+        """
+        # Method 1
 
-def printCoins(coinsUsed,change):
-   coin = change
-   while coin > 0:
-      thisCoin = coinsUsed[coin]
-      print(thisCoin)
-      coin = coin - thisCoin
+        rs = [amount+1] * (amount+1)
+        rs[0] = 0
+        for i in xrange(1, amount+1):
+            for c in coins:
+                if i >= c:
+                    rs[i] = min(rs[i], rs[i-c] + 1)
 
-def main():
-    amnt = 63
-    clist = [1,5,10,21,25]
-    coinsUsed = [0]*(amnt+1)
-    coinCount = [0]*(amnt+1)
+        if rs[amount] == amount+1:
+            return -1
+        return rs[amount]
 
-    print("Making change for",amnt,"requires")
-    print(dpMakeChange(clist,amnt,coinCount,coinsUsed),"coins")
-    print("They are:")
-    printCoins(coinsUsed,amnt)
-    print("The used list is as follows:")
-    print(coinsUsed)
+        # Method 2:
 
-main()
+        MAX = float('inf')
+        dp = [0] + [MAX] * amount
+
+        for i in xrange(1, amount + 1):
+            dp[i] = min([dp[i - c] if i - c >= 0 else MAX for c in coins]) + 1
+
+        return [dp[amount], -1][dp[amount] == MAX]
+
+        # Method 3: BFS
+
+        level = seen = {0}
+        number = 0
+        while level:
+            if amount in level:
+                return number
+            level = {a+c for a in level for c in coins if a+c <= amount} - seen
+            seen |= level
+            number += 1
+        return -1
