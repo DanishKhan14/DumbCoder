@@ -25,7 +25,6 @@
         return res.next
 
         # Method 2: Recursive
-            # Method 2: Recursive
 
         if not l1 and not l2:
             return None
@@ -37,6 +36,6 @@
         a = l1.val + l2.val
         p = ListNode(a%10)
         p.next = self.addTwoNumbers(l1.next, l2.next)
-        if (a>=10):
+        if (a>=10):  # To handle last digit
             p.next = self.addTwoNumbers(p.next, ListNode(1))
         return p
