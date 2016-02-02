@@ -8,6 +8,18 @@ You are given a target value to search. If found in the array return its index, 
 
     def search(self, nums, target):
         """
+
+        1) Find middle point mid = (l + h)/2
+        2) If key is present at middle point, return mid.
+        3) Else If arr[l..mid] is sorted
+            a) If key to be searched lies in range from arr[l]
+               to arr[mid], recur for arr[l..mid].
+            b) Else recur for arr[mid+1..r]
+        4) Else (arr[mid+1..r] must be sorted)
+            a) If key to be searched lies in range from arr[mid+1]
+               to arr[r], recur for arr[mid+1..r].
+            b) Else recur for arr[l..mid]
+
         :type nums: List[int]
         :type target: int
         :rtype: int
