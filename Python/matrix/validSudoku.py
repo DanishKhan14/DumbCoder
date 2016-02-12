@@ -38,8 +38,9 @@
                             d.add(x)
         return True
 
-        """
+
         ####  Method 2
+        """
 
         for i in range(0,9):
             row = []
