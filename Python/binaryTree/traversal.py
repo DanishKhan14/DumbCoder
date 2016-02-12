@@ -170,7 +170,7 @@ InOrder Traversal no recursion
     def maxDepth(self, root): #Recursion
         if root is None:
             return 0
-        return max(self.maxDepth(root.left), self.mexDepth(root.right)) +1
+        return max(self.maxDepth(root.left), self.maxDepth(root.right)) +1
 
     def maxDepthIter(self, root): #Iteration
         if root == None:
@@ -535,6 +535,7 @@ InOrder Traversal no recursion
 
     def kthSmallest(self, root, sum):
         if not root.left and not root.right:
+
             self.res += sum*10 + root.val
         if root.left:
             self.dfs(root.left, sum*10+root.val)
