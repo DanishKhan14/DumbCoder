@@ -7,10 +7,10 @@
 ####################################################
 
 class Vertex():
-    """
-	Vertex Class definition
-	"""
 
+    """
+    Vertex Class definition
+    """
     def __init__(self, key):
         self.id = key
         self.connectedTo = {}
