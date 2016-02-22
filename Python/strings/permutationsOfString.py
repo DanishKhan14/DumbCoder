@@ -117,3 +117,23 @@ print p
         while l < r:
             nums[l], nums[r] = nums[r], nums[l]
             l +=1 ; r -= 1
+
+
+# Method 5: Another solution for perms with duplicates
+
+class Solution(object):
+    def permuteUnique(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        ret = [[]]
+        for n in nums:
+            temp = []
+            for item in ret:
+                for i in xrange(len(item) + 1):
+                    temp += item[:i] + [n] + item[i:],
+                    if i < len(item) and item[i] == n:
+                        break
+            ret = temp
+        return ret if any(ret) else []
