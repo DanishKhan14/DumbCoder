@@ -4,6 +4,8 @@ Find and return the shortest palindrome you can find by performing this transfor
 """
 
 # [TLE]  Method 1: Brute Force. Keep adding one char at a time in rev order
+class Solution(object):
+
     def shortestPalindrome(self, s):
         """
         :type s: str
@@ -19,3 +21,6 @@ Find and return the shortest palindrome you can find by performing this transfor
 
     def isPalindrome(self, a):
         return a == a[::-1]
+
+A = Solution()
+print A.shortestPalindrome("aabbc")
