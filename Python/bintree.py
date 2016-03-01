@@ -71,7 +71,7 @@ def preOrderNorec(rootNode):
             print currentNode.getRootValue()
             currentNode = currentNode.getLeftChild()
         else:
-            s.push(currentNode)
+            s.pop(currentNode)
             currentNode = currentNode.getRightChild()
 
 
