@@ -11,7 +11,7 @@ def findMinMax(tree, min, max, hd)
      if hd is less than min then
            min = hd;
      else if hd is greater than max then
-          *max = hd;
+          max = hd;
 
      findMinMax(tree->left, min, max, hd-1);
      findMinMax(tree->right, min, max, hd+1);
