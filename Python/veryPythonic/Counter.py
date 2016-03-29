@@ -94,3 +94,10 @@ print c1 & c2
 print '\nUnion (taking maximums):'
 print c1 | c2
 
+
+
+##### Dot Product of two vectors ####
+
+vector1 = (2,3,5)
+vector2 = (3,4,6)
+sum(p*q for p,q in zip(vector1, vector2))
