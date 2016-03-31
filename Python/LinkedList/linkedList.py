@@ -218,6 +218,40 @@ class ULinkedList():
 
         return head
 
+    def reverseKGroup(self, head, k):
+        """
+        :type head: ListNode
+        :type k: int
+        :rtype: ListNode
+        """
+        if head is None or head.next is None:
+            return head
+
+        first, cur = head, head
+        count = 0
+        while (cur and count <=K):
+            count += 1
+            cur = cur.next
+        if count <=k:
+            return head
+        else:
+            revhead = self.reverse(first, k)
+            first.next = self.reverseKGroup(cur,k)
+            return revhead
+
+    def reverse(self, head):
+        if head is None or head.next is None:
+            return None
+        pre = None
+        count = 0
+        while(head and count<=K):
+            count += 1
+            temp = head.next
+            head.next = pre
+            pre = head
+            head = temp
+        return pre
+
 
 class OLinkedList():
     '''
