@@ -1,22 +1,25 @@
-#!/usr/bin/python
+class Stack(object):
+    """
 
-class Stack():
-	"""
-	"""
-	def __init__(self):
-		self.items = []
+    """
 
-	def push(self,item):
-		self.items.append(item)
+    def __init__(self):
+        self.items = []
 
-	def pop(self):
-		return self.items.pop()
+    def push(self, obj):
+        self.items.append(obj)
 
-	def isEmpty(self):
-		return self.items == []
+    def pop(self):
+        return self.items.pop()
 
-	def peek(self):
-		return self.items[len(self.items) -1]
+    def isEmpty(self):
+        return self.items == []
 
-	def size(self):
-		return len(self.items)
+    def peek(self):
+        return self.items[len(self.items) -1]
+
+    def size(self):
+        return len(self.items)
+
+
+
